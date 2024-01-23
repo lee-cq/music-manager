@@ -16,9 +16,11 @@ from sqlmodel import SQLModel, Field, Session
 
 from music_manager.apis.models import MusicId3
 from music_manager.music_lib.database import engine
-from music_manager.config import music_library, data_dir
+from music_manager.config import settings
 
 __all__ = ["Music", "MusicBrainZMapping", "BrainZModify", "SQLModel"]
+
+settings = settings()
 
 
 class BrainZModify(str, Enum):
@@ -46,10 +48,10 @@ class Music(MusicId3, table=True):
     @classmethod
     def importer(cls, filename: str, data: bytes):
         """导入器"""
-        data_dir.joinpath("cache").mkdir(parents=True, exist_ok=True)
-        cache_file = data_dir.joinpath("cache", filename)
+        settings.data_dir.joinpath("cache").mkdir(parents=True, exist_ok=True)
+        cache_file = settings.data_dir.joinpath("cache", filename)
         cache_file.write_bytes(data)
-        music_file = music_library.joinpath(filename)
+        music_file = settings.music_library.joinpath(filename)
         if music_file.exists():
             raise FileExistsError("文件已存在")
         self = cls.from_mutagen(cache_file)

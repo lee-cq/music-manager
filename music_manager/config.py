@@ -11,13 +11,7 @@ from pathlib import Path
 
 from pydantic_settings import BaseSettings
 
-
-__all__ = ["Settings", "music_library", "data_dir", "settings"]
-
-# Music Library
-music_library: Path = Path(__file__).parent.parent.joinpath("music_library")
-# 数据目录
-data_dir: Path = Path(__file__).parent.parent.joinpath("data")
+__all__ = ["Settings", "settings"]
 
 
 def settings():
@@ -38,3 +32,7 @@ class Settings(BaseSettings):
     PROJECT_AUTHOR: str = "LeeCQ"
     # 项目作者邮箱
     PROJECT_AUTHOR_EMAIL: str = "lee-cq@qq.com"
+    # Music Library
+    music_library: Path = Path(__file__).parent.parent.joinpath("music_library")
+    # 数据目录
+    data_dir: Path = Path(__file__).parent.parent.joinpath("data")

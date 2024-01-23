@@ -1,5 +1,11 @@
 fastapi~=0.105.0
 sqlmodel~=0.0.14
 pydantic~=2.5.2
-pytest~=7.4.3
+pydantic_settings
+rich
 httpx~=0.26.0
+typer
+
+# 测试
+pytest~=7.4.3
+

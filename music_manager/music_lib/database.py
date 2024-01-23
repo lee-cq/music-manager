@@ -8,13 +8,15 @@
 """
 from sqlmodel import create_engine
 
-from music_manager.config import data_dir
+from music_manager.config import settings
+
+settings = settings()
 
 
 __all__ = ["engine", "init"]
 
 engine = create_engine(
-    f"sqlite:///{data_dir.joinpath('data.db')}",
+    f"sqlite:///{settings.data_dir.joinpath('data.db')}",
     echo=True,
     pool_size=5,
     connect_args={"check_same_thread": False},

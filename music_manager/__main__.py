@@ -11,18 +11,24 @@ from pathlib import Path
 import rich
 import typer
 
-from music_manager.config import music_library, data_dir
-
+from music_manager.config import settings as _s
 
 app = typer.Typer(name="music manager")
+
+settings = _s()
+
+
+@app.command(name="server")
+def server():
+    return
 
 
 @app.command(name="init")
 def init():
     """初始化"""
     typer.echo("Initializing music_manager...")
-    music_library.mkdir(parents=True, exist_ok=True)
-    data_dir.mkdir(parents=True, exist_ok=True)
+    settings.music_library.mkdir(parents=True, exist_ok=True)
+    settings.data_dir.mkdir(parents=True, exist_ok=True)
 
     from music_manager.music_lib.database import init as init_db
 
