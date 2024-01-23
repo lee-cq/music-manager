@@ -6,21 +6,43 @@
 @Date-Time  : 2023/12/29 19:37
 
 """
-import builtins
 from pathlib import Path
 
+from pydantic import BaseModel
 from pydantic_settings import BaseSettings
 
 __all__ = ["Settings", "settings"]
 
+from sys import stderr
 
-def settings():
-    try:
-        return getattr(builtins, "music_settings")
-    except AttributeError:
-        _s = Settings()
-        setattr(builtins, "music_settings", _s)
-        return Settings()
+import confuse
+
+
+class IncludeLazyConfig(confuse.LazyConfig):
+    """A version of Confuse's LazyConfig that also merges in data from
+    YAML files specified in an `include` setting.
+    """
+
+    def read(self, user=True, defaults=True):
+        super().read(user, defaults)
+
+        try:
+            for view in self["include"]:
+                self.set_file(view.as_filename())
+        except confuse.NotFoundError:
+            pass
+        except confuse.ConfigReadError as err:
+            stderr.write("configuration `import` failed: {}".format(err.reason))
+
+
+class FastAPIConfig(BaseModel):
+    """"""
+    enable: bool = False
+
+
+class FeishuConfig(BaseModel):
+    """"""
+    enable: bool = False
 
 
 class Settings(BaseSettings):
@@ -36,3 +58,11 @@ class Settings(BaseSettings):
     music_library: Path = Path(__file__).parent.parent.joinpath("music_library")
     # 数据目录
     data_dir: Path = Path(__file__).parent.parent.joinpath("data")
+
+    fastapi_config: FastAPIConfig = FastAPIConfig()
+    feishu_config: FeishuConfig = FeishuConfig()
+
+
+config = IncludeLazyConfig("music_manager", __name__)
+# settings = Settings(**config)
+settings = Settings()

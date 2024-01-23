@@ -11,11 +11,11 @@ from pathlib import Path
 import rich
 import typer
 
-from music_manager.config import settings as _s
+from music_manager.config import settings
 
 app = typer.Typer(name="music manager")
 
-settings = _s()
+print(__name__)
 
 
 @app.command(name="server")
@@ -25,7 +25,7 @@ def server():
 
 @app.command(name="init")
 def init():
-    """初始化"""
+    """初始化, 重置数据库"""
     typer.echo("Initializing music_manager...")
     settings.music_library.mkdir(parents=True, exist_ok=True)
     settings.data_dir.mkdir(parents=True, exist_ok=True)

@@ -13,8 +13,8 @@ from typing import Optional, Literal, Any
 
 from sqlmodel import SQLModel, Field
 
-from music_manager.music_lib.music_operator import get_music_artwork
-from music_manager.music_lib.model_meta import FfprobrModel
+from music_manager.music_lib.ffmpeg_operator import get_music_artwork
+from music_manager.music_lib.model_ffmpeg import FfprobrModel
 
 NoneType = type(None)
 

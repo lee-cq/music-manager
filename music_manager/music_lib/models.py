@@ -20,8 +20,6 @@ from music_manager.config import settings
 
 __all__ = ["Music", "MusicBrainZMapping", "BrainZModify", "SQLModel"]
 
-settings = settings()
-
 
 class BrainZModify(str, Enum):
     artist = "artist"  # 艺术家

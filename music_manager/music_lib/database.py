@@ -10,9 +10,6 @@ from sqlmodel import create_engine
 
 from music_manager.config import settings
 
-settings = settings()
-
-
 __all__ = ["engine", "init"]
 
 engine = create_engine(

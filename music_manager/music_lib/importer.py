@@ -7,15 +7,22 @@
 
 导入器
 
-将Music导入到MusicLib中
-"""
+将Music导入到MusicLib中.
 
-__all__ = ["import_music"]
+1. 获取被导入的文件的元数据
+2. 比对数据库中的元数据
+    如果数据库中存在, 则报告存在并跳过
+3. 将文件移动到MusicLib中
+4. 将元数据写入数据库
+
+"""
 
 import logging
 from pathlib import Path
 
 from music_manager.music_lib.models import Music
+
+__all__ = ["import_music"]
 
 logger = logging.getLogger("music_manager.music_lib.importer")
 

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-@File Name  : model_meta.py
+@File Name  : model_ffmpeg.py
 @Author     : LeeCQ
 @Date-Time  : 2023/12/23 13:00
 
@@ -12,7 +12,7 @@ from pathlib import Path
 
 from pydantic import BaseModel, Field, AliasChoices
 
-from music_manager.music_lib.music_operator import runner
+from music_manager.music_lib.ffmpeg_operator import runner
 
 __all__ = [
     "BaseModel",

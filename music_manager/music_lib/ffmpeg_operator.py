@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-@File Name  : music_operator.py
+@File Name  : ffmpeg_operator.py
 @Author     : LeeCQ
 @Date-Time  : 2023/12/22 23:57
 

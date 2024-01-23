@@ -5,6 +5,8 @@
 @Author     : LeeCQ
 @Date-Time  : 2023/12/23 14:58
 
+从第三方平台获取音乐的标签信息
+
 """
 import abc
 import base64
@@ -197,7 +199,7 @@ class MiguMusicClient(AbcClient):
     BASE_URL = "https://m.music.migu.cn/"
     header = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) "
-        "Gecko/20100101 Firefox/80.0",
+                      "Gecko/20100101 Firefox/80.0",
         "Referer": "https://m.music.migu.cn/",
     }
 

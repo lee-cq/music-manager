@@ -5,6 +5,7 @@ pydantic_settings
 rich
 httpx~=0.26.0
 typer
+confuse  # 配置文件
 
 # 测试
 pytest~=7.4.3
